@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Eximbay 토큰ID로 결제";
+}
+
+<div class="eximbay-container">
+    <h2>Eximbay Rebill</h2>
+
+    <form method="post" asp-controller="Payment" asp-action="RebillAsync">
+        <input id="tokenId" name="tokenId" class="eximbay-input" placeholder="tokenId" />
+        <button type="submit" class="eximbay-btn">토큰 재결제(RebillAsync)</button>
+    </form>
+
+    @if (ViewBag.Rescode != null)
+    {
+        <div class="eximbay-info">
+            <p><strong>토큰 재결제 완료!</strong></p>
+            <p>응답 코드: @ViewBag.Rescode</p>
+            <p>응답 메시지: @ViewBag.Resmsg</p>
+        </div>
+    }
+
+    @if (ViewBag.TokenCardInfo != null)
+    {
+        <div class="eximbay-section-title">토큰 카드 정보 (조회결과)</div>
+        <pre class="eximbay-pre">@ViewBag.TokenCardInfo</pre>
+    }
+    @if (ViewBag.ResResult != null)
+    {
+        <div class="eximbay-section-title">재결제 요청 결과</div>
+        <pre class="eximbay-pre">@ViewBag.ResResult</pre>
+    }
+
+    @if (ViewBag.ErrorMessage != null)
+    {   
+        <pre class="eximbay-error">@ViewBag.ErrorMessage</pre>
+    }
+
+</div>

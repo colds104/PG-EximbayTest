@@ -1,0 +1,160 @@
+﻿.eximbay-container {
+    max-width: 450px;
+    margin: 68px auto 68px auto;
+    padding: 38px 32px 32px 32px;
+    background: #fafdff;
+    border-radius: 18px;
+    box-shadow: 0 6px 32px rgba(30,44,100,0.11);
+    text-align: center;
+    border: 1.5px solid #e7ecf2;
+}
+
+    .eximbay-container h2 {
+        font-size: 2.05rem;
+        font-weight: 700;
+        margin-bottom: 36px;
+        color: #2a3657;
+        letter-spacing: 0.02em;
+    }
+
+form {
+    margin: 0 0 0 0;
+}
+
+.eximbay-input {
+    width: 100%;
+    max-width: 370px;
+    margin: 0 auto 18px auto;
+    padding: 1.07rem 0 1.03rem 0;
+    font-size: 1.12rem;
+    font-weight: 400;
+    border: 1.5px solid #bee6df;
+    border-radius: 9px;
+    box-shadow: 0 3px 14px rgba(33,134,235,0.04);
+    text-align: center;
+    display: block;
+    letter-spacing: 0.01em;
+    background: #fff;
+    color: #222;
+    outline: none;
+    transition: border 0.15s, box-shadow 0.15s;
+}
+
+    .eximbay-input:focus {
+        border: 1.5px solid #2186eb;
+        box-shadow: 0 0 0 2px #eaf5fb;
+    }
+
+.eximbay-btn {
+    width: 100%;
+    max-width: 370px;
+    margin: 0 auto 18px auto;
+    padding: 1.07rem 0 1.03rem 0;
+    font-size: 1.12rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, #2186eb 0%, #04b1d3 100%);
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    box-shadow: 0 3px 14px rgba(33,134,235,0.08);
+    transition: background 0.16s, box-shadow 0.15s, filter 0.11s;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    letter-spacing: 0.01em;
+    filter: saturate(1.08);
+    margin-bottom: 18px; /* 버튼 하단 간격 추가 */
+    margin-top: 12px;
+}
+
+    .eximbay-btn:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .eximbay-btn:hover, .eximbay-btn:focus {
+        background: linear-gradient(90deg, #1061c7 0%, #017ca2 100%);
+        color: #fff;
+        filter: brightness(1.07);
+    }
+
+.eximbay-info {
+    margin: 32px 0 16px 0;
+    padding: 17px 15px 15px 15px;
+    background: linear-gradient(98deg, #e6f7f6 0%, #eaf5fb 100%);
+    border-radius: 10px;
+    color: #19796a;
+    font-size: 1.06em;
+    word-break: break-all;
+    box-shadow: 0 1px 7px rgba(20,160,120,0.08);
+    border: 1.5px solid #bee6df;
+    line-height: 1.6;
+}
+
+.eximbay-error {
+    margin-top: 25px;
+    padding: 15px 13px 13px 13px;
+    background: linear-gradient(90deg, #fae1e5 0%, #fff0f1 100%);
+    border-radius: 10px;
+    color: #b4213e;
+    font-size: 1.06em;
+    word-break: break-all;
+    box-shadow: 0 1px 7px rgba(220,44,80,0.10);
+    border: 1.5px solid #f5bac9;
+    line-height: 1.6;
+}
+
+.fgkey-value {
+    word-break: break-all;
+    color: #1f52bb;
+    font-weight: 700;
+    font-size: 1.06em;
+    letter-spacing: 0.01em;
+}
+
+input[type="hidden"] {
+    display: none;
+}
+
+.eximbay-pre {
+    background: linear-gradient(98deg, #f6fafd 0%, #eaf5fb 100%);
+    border: 1.5px solid #e7ecf2;
+    border-radius: 10px;
+    padding: 16px 14px 14px 14px;
+    margin: 0 auto 18px auto;
+    color: #2a3657;
+    font-size: 1.05em;
+    line-height: 1.6;
+    width: 100%;
+    max-width: 450px; /* 기존 370px → 450px로 변경 */
+    min-width: 0;
+    overflow-x: auto;
+    text-align: left;
+    word-break: break-all;
+    box-sizing: border-box;
+    box-shadow: 0 1px 7px rgba(30,44,100,0.06);
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
+    display: block;
+}
+
+.eximbay-section-title {
+    margin-top: 28px;
+    margin-bottom: 10px;
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: #19796a;
+    letter-spacing: 0.01em;
+    text-align: left;
+    padding-left: 8px;
+}
+
+@media (max-width: 530px) {
+    .eximbay-container {
+        max-width: 98vw;
+        padding: 15vw 2vw 8vw 2vw;
+    }
+
+    .eximbay-btn, .eximbay-info, .eximbay-error, .eximbay-input {
+        max-width: 96vw;
+        font-size: 1rem;
+    }
+}

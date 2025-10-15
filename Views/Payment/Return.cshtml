@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Eximbay 결제 완료";
+}
+
+<div class="eximbay-container">
+    <h2>Eximbay Return</h2>
+
+    @if (ViewBag.bodyStr != null)
+    {
+        <div class="eximbay-info">
+            <p><strong>결제 완료 Request Body 수신 완료!</strong></p>
+            <p>수신 bodyStr: @ViewBag.bodyStr</p>
+        </div>
+    }
+    @if (ViewBag.ErrorMessage != null)
+    {   
+        <pre class="eximbay-error">@ViewBag.ErrorMessage</pre>
+    }
+</div>

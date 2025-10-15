@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Eximbay 결제 준비 & 결제 통합창 열기";
+}
+
+<div class="eximbay-container">
+    <h2>Eximbay Ready</h2>
+
+    <form method="post" asp-controller="Payment" asp-action="ReadyAsync">
+        <button type="submit" class="eximbay-btn">일반 결제 준비(ReadyAsync)</button>
+    </form>
+
+    <form method="post" asp-controller="Payment" asp-action="ReadyTokenAsync">
+        <button type="submit" class="eximbay-btn">토큰 결제 준비(ReadyTokenAsync) <br />/ 카드 승인 후 tokenId 수신</button>
+    </form>
+
+    @if (ViewBag.Fgkey != null)
+    {
+        <div class="eximbay-info">
+            <p><strong>결제 준비 완료!</strong></p>
+            <p>응답 코드: @ViewBag.Rescode</p>
+            <p>응답 메시지: @ViewBag.Resmsg</p>
+            <p>응답 Fgkey: <span class="fgkey-value">@ViewBag.Fgkey</span></p>
+
+            <!-- fgkey를 숨겨진 필드에 저장 -->
+            <input type="hidden" id="fgkey" value="@ViewBag.Fgkey" />
+            <input type="hidden" id="paymentData" value='@Html.Raw(ViewBag.PaymentData)' />
+            <input type="hidden" id="merchantData" value='@Html.Raw(ViewBag.MerchantData)' />
+            <input type="hidden" id="buyerData" value='@Html.Raw(ViewBag.BuyerData)' />
+            <input type="hidden" id="urlData" value='@Html.Raw(ViewBag.UrlData)' />
+            <input type="hidden" id="settingsData" value='@Html.Raw(ViewBag.SettingsData)' />
+            <input type="hidden" id="otherParamData" value='@Html.Raw(ViewBag.OtherParamData)' />
+            <input type="hidden" id="tokenbillingData" value='@Html.Raw(ViewBag.TokenbillingData)' />
+            <input type="hidden" id="fastPaymentData" value='@Html.Raw(ViewBag.FastPaymentData)' />
+
+            <!-- JavaScript로 EXIMBAY SDK 결제 요청 -->
+            <button type="button" class="eximbay-btn" style="background:#28a745;" onclick="payment()">결제 통합창 열기</button>
+        </div>
+    }
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <pre class="eximbay-error">@ViewBag.ErrorMessage</pre>
+    }
+</div>
+
+
+<!-- EXIMBAY JavaScript SDK 로드 -->
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- SDK  -->
+<script type="text/javascript" src="https://api-test.eximbay.com/v1/javascriptSDK.js"></script>
+
+<script type="text/javascript">
+    function payment() {
+        const fgkey = document.getElementById("fgkey").value;
+        const payment = safeJsonParse(document.getElementById("paymentData")?.value);
+        const merchant = safeJsonParse(document.getElementById("merchantData")?.value);
+        const buyer = safeJsonParse(document.getElementById("buyerData")?.value);
+        const url = safeJsonParse(document.getElementById("urlData")?.value);
+        const settings = safeJsonParse(document.getElementById("settingsData")?.value);
+        const otherparam = safeJsonParse(document.getElementById("otherParamData")?.value);
+        const tokenbilling = safeJsonParse(document.getElementById("tokenbillingData")?.value);
+        const fastpayment = safeJsonParse(document.getElementById("fastPaymentData")?.value);
+
+        // 기본 파라미터
+        let params = {
+            fgkey: fgkey,
+            payment: payment,
+            merchant: merchant,
+            buyer: buyer,
+            url: url,
+            settings: settings,
+            other_param: otherparam
+        };
+
+        // tokenbilling, fastpayment 등 값이 있으면 동적으로 추가
+        if (tokenbilling) {
+            params.tokenbilling = tokenbilling;
+        }
+        if (fastpayment) {
+            params.fast_payment  = fastpayment;
+        }
+
+        EXIMBAY.request_pay(params);
+    }
+
+    // 안전한 JSON 파싱 함수
+    function safeJsonParse(value) {
+        if (!value) return null;
+        try {
+            return JSON.parse(value);
+        } catch (e) {
+            console.error("JSON 파싱 오류:", e);
+            return null;
+        }
+    }
+</script>
+
